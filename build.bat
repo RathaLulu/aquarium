@@ -20,6 +20,7 @@ cmake ..
 
 if errorlevel 1 (
     echo Erreur pendant la configuration CMake.
+    cd ..
     exit /b 1
 )
 
@@ -28,8 +29,10 @@ cmake --build . --config Release
 
 if errorlevel 1 (
     echo Erreur pendant la compilation.
+    cd ..
     exit /b 1
 )
 
 echo  Build termine avec succes !
+cmake --build . --config Debug
 cd ..

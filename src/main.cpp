@@ -1,6 +1,9 @@
 #include <iostream>
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+#include "poisson.h"
+
+int main() 
+{
+    Poisson fish("Fish", Sexe::MALE);
+    fish.sayHello();
 }
