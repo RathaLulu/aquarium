@@ -5,17 +5,6 @@
 
 #include "poisson.h"
 
-enum class RaceCar 
-{
-    MEROU, 
-    THON, 
-    POISSONCLOW 
-};
-
-static const char* RacesNames[] = {"Merou", "thon", "Poisson-clown"};
-
-std::ostream& operator<<(std::ostream& os, RaceCar s);
-
 class Carnivore : public Poisson
 {
     /*
@@ -23,7 +12,7 @@ class Carnivore : public Poisson
     public : 
     /*
     */ 
-    Carnivore(const std::string& pName, Sexe pSexe, RaceCar pRace); 
+    Carnivore(const std::string& pName, Sexe pSexe, Race pRace); 
     /*
     */ 
     virtual ~Carnivore() = default;
@@ -35,7 +24,7 @@ class Carnivore : public Poisson
     private : 
     /*
     */
-    RaceCar mRace; 
+    Race mRace; 
 
 };
 

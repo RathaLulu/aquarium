@@ -15,6 +15,20 @@ static const char* SexeNames[] = {"Male", "Femelle"};
 
 std::ostream& operator<<(std::ostream& os, Sexe s);
 
+enum class Race
+{
+    MEROU, 
+    THON, 
+    POISSONCLOW,
+    SOLE, 
+    BARE, 
+    CARPE
+};
+
+static const char* RacesNames[] = {"Merou", "thon", "Poisson-clown","Sole", "Bare", "Carpe"};
+
+std::ostream& operator<<(std::ostream& os, Race s);
+
 class Poisson
 {
     public :

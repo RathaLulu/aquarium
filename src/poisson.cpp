@@ -6,6 +6,11 @@ std::ostream& operator<<(std::ostream& os, Sexe s) {
     return os << SexeNames[static_cast<int>(s)];
 }
 
+std::ostream& operator<<(std::ostream& os, Race s) {
+    static const char* RacesNamesCar[] = {"Merou", "thon", "Poisson-clown","Sole", "Bare", "Carpe"};
+    return os << RacesNamesCar[static_cast<int>(s)];
+}
+
 //----------------------------------------------------------------//
 
 Poisson::Poisson(const std::string& pName,Sexe pSexe)
