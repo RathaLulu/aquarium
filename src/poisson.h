@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 
 enum class Sexe
 {
@@ -22,10 +23,13 @@ class Poisson
     Poisson(const std::string& pName,Sexe pSexe);
     /*
     */ 
-    void sayHello(); 
+    virtual ~Poisson() = default;
     /*
     */ 
-    private : 
+    virtual void sayHello() const; 
+    /*
+    */ 
+    protected : 
     /*
     */ 
     std::string mName; 

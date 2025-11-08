@@ -11,6 +11,7 @@ set(SOURCES
     src/main.cpp
     src/poisson.cpp
     src/aquarium.cpp
+    src/carnivore.cpp
 )
 
 # Ajoute l’exécutable à construire

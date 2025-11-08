@@ -2,6 +2,7 @@
 #define AQUARIUM_H 
 
 #include <vector>
+#include <memory>
 
 #include "poisson.h"
 
@@ -13,13 +14,13 @@ class Aquarium
     Aquarium();
     /*
     */
-    Aquarium(std::vector<Poisson> pPoissons, int const pAlgesN);
+    Aquarium(std::vector<std::shared_ptr<Poisson>> pPoissons, int const pAlgesN);
     /*
     */
     void nextTour(); 
     /*
     */
-    void addPoisson(Poisson pPoisson); 
+    void addPoisson(std::shared_ptr<Poisson> pPoisson); 
     /*
     */
     void addAlges(); 
@@ -40,7 +41,7 @@ class Aquarium
     int mAlgeN = 0; 
     /*
     */
-    std::vector<Poisson> mPoissons; 
+    std::vector<std::shared_ptr<Poisson>>mPoissons; 
 
 };
 

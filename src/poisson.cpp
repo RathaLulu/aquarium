@@ -16,7 +16,7 @@ Poisson::Poisson(const std::string& pName,Sexe pSexe)
 
 //----------------------------------------------------------------//
 
-void Poisson::sayHello()
+void Poisson::sayHello() const
 {
-    std::cout<<"Hello, my name is "<<mName<<"and I'am a "<<mSexe<<" fish"<<std::endl; 
+    std::cout<<"Hello, my name is "<<mName<<" and I'am a "<<mSexe<<" fish"<<std::endl; 
 }
