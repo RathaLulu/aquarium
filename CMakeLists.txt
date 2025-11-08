@@ -10,6 +10,7 @@ include_directories(src)
 set(SOURCES
     src/main.cpp
     src/poisson.cpp
+    src/aquarium.cpp
 )
 
 # Ajoute l’exécutable à construire
