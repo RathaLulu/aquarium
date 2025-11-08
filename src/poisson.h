@@ -10,6 +10,10 @@ enum class Sexe
     FEMELLE
 };
 
+static const char* SexeNames[] = {"Male", "Femelle"};
+
+std::ostream& operator<<(std::ostream& os, Sexe s);
+
 class Poisson
 {
     public :
