@@ -21,10 +21,13 @@ class Carnivore : public Poisson
     void sayHello() const override ; 
     /*
     */
+    TypePoisson getType() const override { return TypePoisson::CARNIVORE; }
     private : 
     /*
     */
     Race mRace; 
+    /*
+    */
 
 };
 

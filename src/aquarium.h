@@ -32,6 +32,9 @@ class Aquarium
     void printInfo();
     /*
     */
+    void PassTour(); 
+    /*
+    */
     private :
     /*
     */

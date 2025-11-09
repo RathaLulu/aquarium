@@ -25,3 +25,10 @@ void Poisson::sayHello() const
 {
     std::cout<<"Hello, my name is "<<mName<<" and I'am a "<<mSexe<<" fish"<<std::endl; 
 }
+
+//----------------------------------------------------------------//
+
+void Poisson::killFish()
+{
+    mLive = false; 
+}

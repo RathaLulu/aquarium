@@ -29,6 +29,8 @@ static const char* RacesNames[] = {"Merou", "thon", "Poisson-clown","Sole", "Bar
 
 std::ostream& operator<<(std::ostream& os, Race s);
 
+enum class TypePoisson { NORMAL, CARNIVORE, HERBIVORE };
+
 class Poisson
 {
     public :
@@ -40,7 +42,16 @@ class Poisson
     virtual ~Poisson() = default;
     /*
     */ 
-    virtual void sayHello() const; 
+    virtual void killFish();
+    /*
+    */  
+    virtual bool isLive() const {return mLive;}
+    /*
+    */ 
+    virtual void sayHello() const;
+    /*
+    */ 
+    virtual TypePoisson getType() const { return TypePoisson::NORMAL;}
     /*
     */ 
     protected : 
@@ -50,6 +61,9 @@ class Poisson
     /*
     */ 
     Sexe mSexe;
+    /*
+    */
+    bool mLive {true};
 
 };
 

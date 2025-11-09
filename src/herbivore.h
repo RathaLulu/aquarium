@@ -22,6 +22,7 @@ class Herbivore : public Poisson
     void sayHello() const override ; 
     /*
     */
+    TypePoisson getType() const override { return TypePoisson::HERBIVORE; }
     private : 
     /*
     */
