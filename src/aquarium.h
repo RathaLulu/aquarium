@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "poisson.h"
+#include "algue.h"
 
 class Aquarium
 {
@@ -14,7 +15,7 @@ class Aquarium
     Aquarium();
     /*
     */
-    Aquarium(std::vector<std::shared_ptr<Poisson>> pPoissons, int const pAlgesN);
+    Aquarium(std::vector<std::shared_ptr<Poisson>> pPoissons, std::vector<int> const pSizes);
     /*
     */
     void nextTour(); 
@@ -23,16 +24,18 @@ class Aquarium
     void addPoisson(std::shared_ptr<Poisson> pPoisson); 
     /*
     */
-    void addAlges(); 
+    void addAlgue(int pSize); 
     /*
     */
-    void addAlges(int pAlgesN); 
+    void addAlgues(std::vector<int> const pSizes); 
     /*
     */
     void printInfo();
     /*
     */
     void PassTour(); 
+    /*
+    */
     /*
     */
     private :
@@ -45,6 +48,12 @@ class Aquarium
     /*
     */
     std::vector<std::shared_ptr<Poisson>>mPoissons; 
+    /*
+    */
+    std::vector<std::shared_ptr<Algue>> mAlgues;
+    /*
+    */
+    int mIdAlgue = 0;
 
 };
 

@@ -18,11 +18,11 @@ int main()
     auto herb1 = std::make_shared<Herbivore>("Titou", Sexe::MALE, Race::CARPE);
 
     std::vector<std::shared_ptr<Poisson>> poissons {fish1, fish2, fish3};
+    std::vector<int> sizes {4,2,6,3,4,2,1,5,3,4,2,6,3,4,2,3,1,4,5,2,3};
 
-    Aquarium Aqua(poissons, Nalges);
+    Aquarium Aqua(poissons, sizes);
 
-    Aqua.addAlges();
-    Aqua.addAlges(50);
+   
     Aqua.addPoisson(fish4);
     Aqua.addPoisson(carn1);
     Aqua.addPoisson(herb1);

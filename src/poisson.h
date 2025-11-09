@@ -64,6 +64,9 @@ class Poisson
     /*
     */
     bool mLive {true};
+    /*
+    */
+    int mLife {20}; 
 
 };
 
