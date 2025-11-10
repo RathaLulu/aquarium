@@ -7,6 +7,7 @@
 #include "poisson.h"
 #include "algue.h"
 
+
 class Aquarium
 {
     public : 
@@ -36,6 +37,8 @@ class Aquarium
     void PassTour(); 
     /*
     */
+    template <typename T>
+    void deleteDead(std::vector<T>& pVector, std::vector<int> pDead);
     /*
     */
     private :

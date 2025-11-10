@@ -62,28 +62,42 @@ void Aquarium::printInfo()
 } 
 
 //----------------------------------------------------------------//
+template <typename T>
+void Aquarium::deleteDead(std::vector<T>& pVector, std::vector<int> pDead)
+{
+    std::sort(pDead.begin(), pDead.end());
+    for (int lI : pDead) 
+    {
+        if (lI < pVector.size())
+            pVector.erase(pVector.begin() + lI);
+    }
+}
+
+//----------------------------------------------------------------//
 
 void Aquarium::PassTour()
 {
     std::vector<int> lDeadFish;  
     std::vector<int> lDeadAlgues;  
+    std::random_device rd;           
     for 
         (auto& p : mPoissons)
     {
+        
         if (p->isLive())
+             
+             
             switch (p->getType())
             {
                 case TypePoisson::HERBIVORE:
                 {
                     if 
                         (!mAlgues.empty())
-                    {
-                        std::random_device rd;           
-                        std::mt19937 gen(rd());        
+                    {        
+                        std::mt19937 gen(rd());
                         std::uniform_int_distribution<> distrib(0, (mAlgues.size()-1));
-
                         int lRandomNumber = distrib(gen);
-                        if (mAlgues[lRandomNumber]->isDead())
+                        if (!mAlgues[lRandomNumber]->isDead())
                         {
                             mAlgues[lRandomNumber]->beEat();
                             if (mAlgues[lRandomNumber]->isDead()) {lDeadAlgues.push_back(lRandomNumber);}
@@ -91,11 +105,9 @@ void Aquarium::PassTour()
                     }
                 }
                 case TypePoisson::CARNIVORE:
-                {
-                    std::random_device rd;           
-                    std::mt19937 gen(rd());        
+                {      
+                    std::mt19937 gen(rd());
                     std::uniform_int_distribution<> distrib(0, (mPoissons.size()-1)*10);
-
                     int lRandomNumber = distrib(gen);
                     if (lRandomNumber < mPoissons.size())
                     {
@@ -111,17 +123,7 @@ void Aquarium::PassTour()
                 
             }      
     }
-    std::sort(lDeadFish.begin(), lDeadFish.end());
-    for (int lI : lDeadFish) 
-    {
-        if (lI < mPoissons.size())
-            mPoissons.erase(mPoissons.begin() + lI);
-    }
-    std::sort(lDeadAlgues.begin(), lDeadAlgues.end());
-    for (int lI : lDeadAlgues) 
-    {
-        if (lI < mAlgues.size())
-            mAlgues.erase(mAlgues.begin() + lI);
-    }
+    deleteDead(mPoissons,lDeadFish); 
+    deleteDead(mAlgues, lDeadAlgues);
     ++mPoch;
 }
