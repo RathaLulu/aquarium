@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package aquarium;
+
+message Algue 
+{
+    int32 iD = 1;
+    int32 life = 2;  
+}
+
+message Poisson 
+{
+    enum Type {
+        NORMAL = 0;
+        CARNIVORE = 1; 
+        HERBIVORE = 2;
+    }
+    enum Species 
+    {
+        MEROU = 0; 
+        THON = 1;  
+        POISSONCLOW = 2;
+        SOLE = 3; 
+        BARE = 4; 
+        CARPE = 5;
+    } 
+
+    string name = 1;
+    Type type = 2;
+    Species species = 3;
+    int32 life = 4;
+    bool islife = 5;
+}
+
+message Aquarium 
+{
+    int32 tour = 1;
+    repeated Algue algues = 2;
+    repeated Poisson poissons = 3;
+}
