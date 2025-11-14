@@ -42,6 +42,7 @@ class Aquarium
     /*
     */
     private :
+    void endTour();
     /*
     */
     int mPoch = 0; 

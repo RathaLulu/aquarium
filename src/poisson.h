@@ -42,10 +42,10 @@ class Poisson
     virtual ~Poisson() = default;
     /*
     */ 
-    virtual void killFish();
+    virtual void beAttack();
     /*
     */  
-    virtual bool isLive() const {return mLive;}
+    virtual bool isLive() const {return mLife > 0;}
     /*
     */ 
     virtual void sayHello() const;
@@ -54,6 +54,17 @@ class Poisson
     virtual TypePoisson getType() const { return TypePoisson::NORMAL;}
     /*
     */ 
+    virtual void setEat(); 
+    /*
+    */ 
+    void initEat();
+    /*
+    */
+    virtual bool getHasEat() const {return mHasEat;}
+    /*
+    */
+    virtual void dontEat(); 
+
     protected : 
     /*
     */ 
@@ -63,10 +74,10 @@ class Poisson
     Sexe mSexe;
     /*
     */
-    bool mLive {true};
+    int mLife {20}; 
     /*
     */
-    int mLife {20}; 
+    bool mHasEat {false}; 
 
 };
 

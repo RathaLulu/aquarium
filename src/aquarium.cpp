@@ -75,10 +75,41 @@ void Aquarium::deleteDead(std::vector<T>& pVector, std::vector<int> pDead)
 
 //----------------------------------------------------------------//
 
-void Aquarium::PassTour()
+void Aquarium::endTour()
 {
     std::vector<int> lDeadFish;  
     std::vector<int> lDeadAlgues;  
+    int lI = 0;
+    int lJ = 0; 
+    for 
+        (auto &p : mPoissons)
+    {
+        if (p->isLive())
+        {
+            if (!(p->getHasEat()))
+            {
+                p->dontEat();
+            }
+        }
+        if (!p->isLive())
+        {
+            lDeadFish.push_back(lI);
+        }
+        ++lI; 
+    }
+    for 
+        (auto &a : mAlgues)
+    {
+        if 
+            (a->isDead()) {lDeadAlgues.push_back(lJ);}
+            ++lJ;
+    }
+}
+
+//----------------------------------------------------------------//
+
+void Aquarium::PassTour()
+{
     std::random_device rd;           
     for 
         (auto& p : mPoissons)
@@ -100,7 +131,7 @@ void Aquarium::PassTour()
                         if (!mAlgues[lRandomNumber]->isDead())
                         {
                             mAlgues[lRandomNumber]->beEat();
-                            if (mAlgues[lRandomNumber]->isDead()) {lDeadAlgues.push_back(lRandomNumber);}
+                            p->setEat();
                         }
                     }
                 }
@@ -114,8 +145,8 @@ void Aquarium::PassTour()
                         if 
                             (mPoissons[lRandomNumber]->getType() == TypePoisson::HERBIVORE)
                         {
-                            mPoissons[lRandomNumber]->killFish();
-                            lDeadFish.push_back(lRandomNumber);
+                            mPoissons[lRandomNumber]->beAttack();
+                            p->setEat();
                         }
                     }
                 }
@@ -123,7 +154,6 @@ void Aquarium::PassTour()
                 
             }      
     }
-    deleteDead(mPoissons,lDeadFish); 
-    deleteDead(mAlgues, lDeadAlgues);
+    endTour();
     ++mPoch;
 }

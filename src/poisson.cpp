@@ -28,7 +28,28 @@ void Poisson::sayHello() const
 
 //----------------------------------------------------------------//
 
-void Poisson::killFish()
+void Poisson::beAttack()
 {
-    mLive = false; 
+    mLife = mLife - 4; 
+}
+
+//----------------------------------------------------------------//
+
+void Poisson::setEat()
+{
+    mHasEat = true; 
+}
+
+//----------------------------------------------------------------//
+
+void Poisson::initEat()
+{
+    mHasEat = false;
+}
+
+//----------------------------------------------------------------//
+
+void Poisson::dontEat()
+{
+    mLife = mLife - 3; 
 }
