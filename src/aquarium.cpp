@@ -6,7 +6,7 @@
 
 #include "poisson.h"
 #include "aquarium.h"
-
+#include "aquarium.pb.h"
 
 //----------------------------------------------------------------//
 
