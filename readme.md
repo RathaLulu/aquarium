@@ -20,34 +20,37 @@ Pour compiler, sur window, utiliser Visual Studio (MSVC) + Terminal VS.
 
 1. Créez un dossier `lib` pour les dépendances et clonez les dépôts :  
 
-```powershell
+```bash
+cd {YOURPROJET}/../
 git clone https://github.com/abseil/abseil-cpp.git
+cd abseil-cpp
+mkdir -p build && cd build
+
+cmake -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_INSTALL_PREFIX=/usr/local \
+  -DBUILD_SHARED_LIBS=ON \
+  ..
+ninja
+sudo ninja install
+cd {YOURPROJET}/../
 git clone https://github.com/protocolbuffers/protobuf.git
-cd protobuf
-git checkout v31.1
-```
-2. Créez un dossier build et configurez CMake :
-```powershell
-mkdir build
-cd build
-cmake .. -G "Visual Studio 17 2022" -A x64 `
--Dprotobuf_BUILD_TESTS=OFF `
--DCMAKE_BUILD_TYPE=Release `
--DABSL_ROOT_DIR="C:/Users/lucas/Documents/code/abseil-cpp"
-```
-3. Compilation 
-```powershell
-cmake --build . --config Release
-```
-4. Vérification (Dans un autre terminal)
-```powershell
-protoc --version
-```
-Vous devriez voir libprotoc 31.1.0.
+mkdir -p build && cd build
+cmake -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_SHARED_LIBS=ON \
+  -Dprotobuf_BUILD_TESTS=OFF \
+  -Dprotobuf_BUILD_EXAMPLES=OFF \
+  -Dprotobuf_BUILD_PROTOC_BINARIES=ON \
+  -DCMAKE_INSTALL_PREFIX=/usr/local \
+  -DProtobuf_USE_ABSL=ON \
+  ..
+ninja
+sudo ninja install
 
 # Compilation du projet et lancement 
 
-```powershell
-build.bat
-launch_debug.bat
+``` bash
+build.sh
+launch.sh
 ```
