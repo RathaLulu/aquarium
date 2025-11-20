@@ -18,22 +18,19 @@ int main()
     auto herb1 = std::make_shared<Herbivore>("Titou", Sexe::MALE, Race::CARPE);
 
     std::vector<std::shared_ptr<Poisson>> poissons {fish1, fish2, fish3};
-    std::vector<int> sizes {4,2,6,3,4,2,1,5,3,4,2,6,3,4,2,3,1,4,5,2,3};
+    std::vector<int> sizes {4,2,6};
 
     Aquarium Aqua(poissons, sizes);
 
-   
-    Aqua.addPoisson(fish4);
-    Aqua.addPoisson(carn1);
-    Aqua.addPoisson(herb1);
 
 
-    Aqua.printInfo();
+
+    Aqua.aquariumTojson();
     int N = 20; 
     for (int i = 0; i<N; ++i)
     {
         Aqua.PassTour();
-        Aqua.printInfo();
+        Aqua.aquariumTojson();
     }
         
     return 1; 
