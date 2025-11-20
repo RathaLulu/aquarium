@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <random>
 
+
+#include <google/protobuf/util/json_util.h>
 #include "poisson.h"
 #include "aquarium.h"
 #include "aquarium.pb.h"
@@ -12,6 +14,7 @@
 
 Aquarium::Aquarium(std::vector<std::shared_ptr<Poisson>>pPoissons, std::vector<int> const pSizes)
 {
+    GOOGLE_PROTOBUF_VERIFY_VERSION;
     mPoissons = pPoissons; 
     addAlgues(pSizes);
 }
@@ -156,4 +159,34 @@ void Aquarium::PassTour()
     }
     endTour();
     ++mPoch;
+}
+
+//----------------------------------------------------------------//
+
+std::string Aquarium::aquariumTojson()
+{
+    std::string lJson; 
+    google::protobuf::util::JsonPrintOptions l0ptions;
+    l0ptionsoptions.add_whitespace = true; // Pretty-print the JSON
+    l0ptionsoptions.always_print_primitive_fields = true;
+    aquarium_proto::Aquarium lAquaProto; 
+    lAquaProto.set_tour(mIdAlgue);
+    for 
+        (unsigned int lI = 0; lI < mPoissons.size(); ++lI)
+    {
+        aquarium_proto::Poisson *lPoissonTemp = lAquaProto.add_poissons();
+        lPoissonTemp->set_name(mPoissons[lI]->getName());
+        lPoissonTemp->set_life(mPoissons[lI]->getLife()); 
+        lPoissonTemp->set_islive(mPoissons[lI]->getLife() > 0);
+    }
+    for 
+        (unsigned int lI = 0; lI < mAlgues.size(); ++lI)
+    {
+        aquarium_proto::Algue *lAlgueTemp = lAquaProto.add_algues();
+        lAlgueTemp->set_id(mAlgues[lI]->getId()); 
+        lAlgueTemp->set_size(mAlgues[lI]->getSize());
+    }
+    auto status = google::protobuf::util::MessageToJsonString(lAquaProto, &lJson); 
+    std::cout<<lJson<<std::endl;
+    return "";
 }

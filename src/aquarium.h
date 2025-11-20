@@ -37,6 +37,9 @@ class Aquarium
     void PassTour(); 
     /*
     */
+    std::string aquariumTojson();  
+    /*
+    */
     template <typename T>
     void deleteDead(std::vector<T>& pVector, std::vector<int> pDead);
     /*
