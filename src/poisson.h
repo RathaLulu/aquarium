@@ -64,6 +64,12 @@ class Poisson
     /*
     */
     virtual void dontEat(); 
+    /*
+    */
+    std::string getName() const;
+    /*
+    */
+    int getLife() const;
 
     protected : 
     /*

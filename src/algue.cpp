@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Algue.h"
+#include "algue.h"
 
 //----------------------------------------------------------------//
 
@@ -42,4 +42,11 @@ bool Algue::isDead() const
 void Algue::beEat()
 {
     --mSize;
+}
+
+//----------------------------------------------------------------//
+
+int Algue::getId() const
+{
+    return mId; 
 }

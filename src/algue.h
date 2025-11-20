@@ -21,6 +21,9 @@ class Algue
     int getSize() const;
     /*
     */
+    int getId() const; 
+    /*
+    */
     bool isDead() const; 
     /*
     */ 
