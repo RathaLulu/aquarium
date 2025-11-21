@@ -12,10 +12,14 @@
 
 //----------------------------------------------------------------//
 
-Aquarium::Aquarium(std::vector<std::shared_ptr<Poisson>>pPoissons, std::vector<int> const pSizes)
+Aquarium::Aquarium(const std::vector<double>  pDim, std::vector<std::shared_ptr<Poisson>>pPoissons, std::vector<int> const pSizes)
 {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     mPoissons = pPoissons; 
+    mDim[0] = pDim[0];
+    mDim[1] = pDim[1];
+    mDim[2] = pDim[2];
+    mDim[3] = pDim[3];
     addAlgues(pSizes);
 }
 
@@ -178,6 +182,12 @@ std::string Aquarium::aquariumTojson()
         (unsigned int lI = 0; lI < mPoissons.size(); ++lI)
     {
         aquarium_proto::Poisson *lPoissonTemp = lAquaProto.add_poissons();
+        aquarium_proto::Pos* lPosProto = lPoissonTemp->mutable_pos();
+        Pos lPos = mPoissons[lI]->getPos(); 
+        lPosProto->set_x(lPos.x);
+        lPosProto->set_y(lPos.y);
+        lPosProto->set_vx(lPos.vx);
+        lPosProto->set_vy(lPos.vy);
         lPoissonTemp->set_name(mPoissons[lI]->getName());
         lPoissonTemp->set_life(mPoissons[lI]->getLife()); 
         lPoissonTemp->set_islive(mPoissons[lI]->getLife() > 0);

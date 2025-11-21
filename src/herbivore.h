@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "poisson.h"
+#include <vector>
 
 
 class Herbivore : public Poisson
@@ -13,7 +14,7 @@ class Herbivore : public Poisson
     public : 
     /*
     */ 
-    Herbivore(const std::string& pName, Sexe pSexe, Race pRace); 
+    Herbivore(const std::string& pName, Sexe pSexe, const std::vector<double> pPosLim,Race pRace); 
     /*
     */ 
     virtual ~Herbivore() = default;

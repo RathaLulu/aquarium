@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <vector>
 
 enum class Sexe
 {
@@ -31,12 +32,21 @@ std::ostream& operator<<(std::ostream& os, Race s);
 
 enum class TypePoisson { NORMAL, CARNIVORE, HERBIVORE };
 
+struct Pos 
+{
+    double x; 
+    double y; 
+    double vx; 
+    double vy;
+};
+
 class Poisson
 {
     public :
+    //Poisson();
     /*
     */ 
-    Poisson(const std::string& pName,Sexe pSexe);
+    Poisson(const std::string& pName, Sexe pSexe, const std::vector<double> pPosLim); //pPosLim -> [xmin, xmax, ymin, ymax] correspond à coordonnées limite où le poisson sera initialisé.
     /*
     */ 
     virtual ~Poisson() = default;
@@ -70,7 +80,11 @@ class Poisson
     /*
     */
     int getLife() const;
-
+    /*
+    */
+    Pos getPos() const; 
+    /*
+    */
     protected : 
     /*
     */ 
@@ -84,6 +98,15 @@ class Poisson
     /*
     */
     bool mHasEat {false}; 
+    /*
+    */
+    Pos mPos; 
+    /*
+    */
+    std::vector<double> mPosLim{0,0,0,0};
+    /*
+    */
+    double mSpeed = 10; //mSpeed**2= (mPos.vx)**2 + (mPos.vy)**2
 
 };
 

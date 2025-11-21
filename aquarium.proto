@@ -8,6 +8,14 @@ message Algue
     int32 size = 2;  
 }
 
+message Pos
+{
+    double x = 1; 
+    double y = 2; 
+    double vx = 3; 
+    double vy = 4; 
+}
+
 message Poisson 
 {
     enum Type {
@@ -28,8 +36,9 @@ message Poisson
     string name = 1;
     Type type = 2;
     Species species = 3;
-    int32 life = 4;
-    bool islive = 5;
+    Pos pos = 4;  
+    int32 life = 5;
+    bool islive = 6;
 }
 
 message Aquarium 

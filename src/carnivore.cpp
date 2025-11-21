@@ -5,7 +5,7 @@
 
 //----------------------------------------------------------------//
 
-Carnivore::Carnivore(const std::string& pName,Sexe pSexe, Race pRace) : Poisson(pName, pSexe)
+Carnivore::Carnivore(const std::string& pName,Sexe pSexe,std::vector<double> pPosLim ,Race pRace) : Poisson(pName, pSexe, pPosLim)
 {
     mRace = pRace;
     

@@ -6,7 +6,7 @@
 
 //----------------------------------------------------------------//
 
-Herbivore::Herbivore(const std::string& pName,Sexe pSexe, Race pRace) : Poisson(pName, pSexe)
+Herbivore::Herbivore(const std::string& pName,Sexe pSexe,const std::vector<double> pPosLim ,Race pRace) : Poisson(pName, pSexe, pPosLim)
 {
     
     mRace = pRace;

@@ -16,7 +16,7 @@ class Aquarium
     Aquarium();
     /*
     */
-    Aquarium(std::vector<std::shared_ptr<Poisson>> pPoissons, std::vector<int> const pSizes);
+    Aquarium(const std::vector<double> pDim, std::vector<std::shared_ptr<Poisson>> pPoissons, std::vector<int> const pSizes);
     /*
     */
     void nextTour(); 
@@ -44,6 +44,7 @@ class Aquarium
     void deleteDead(std::vector<T>& pVector, std::vector<int> pDead);
     /*
     */
+
     private :
     void endTour();
     /*
@@ -61,6 +62,9 @@ class Aquarium
     /*
     */
     int mIdAlgue = 0;
+    /*
+    */
+    std::vector<double> mDim={0,0,0,0};
 
 };
 
