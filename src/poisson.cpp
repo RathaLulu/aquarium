@@ -44,6 +44,12 @@ void Poisson::setEat()
 
 void Poisson::initEat()
 {
+    if 
+        (mHasEat)
+    {
+        mLife = mLife + 2; 
+        if (mLife > 20) {mLife = 20;}
+    }
     mHasEat = false;
 }
 
