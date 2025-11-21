@@ -98,6 +98,7 @@ void Aquarium::endTour()
         {
             lDeadFish.push_back(lI);
         }
+        p->initEat();
         ++lI; 
     }
     for 
@@ -107,6 +108,8 @@ void Aquarium::endTour()
             (a->isDead()) {lDeadAlgues.push_back(lJ);}
             ++lJ;
     }
+    deleteDead(mPoissons, lDeadFish); 
+    deleteDead(mAlgues, lDeadAlgues);
 }
 
 //----------------------------------------------------------------//
@@ -167,10 +170,10 @@ std::string Aquarium::aquariumTojson()
 {
     std::string lJson; 
     google::protobuf::util::JsonPrintOptions l0ptions;
-    l0ptionsoptions.add_whitespace = true; // Pretty-print the JSON
-    l0ptionsoptions.always_print_primitive_fields = true;
+    //l0ptions.add_whitespace = true; // Pretty-print the JSON
+    //l0ptions.always_print_primitive_fields = true;
     aquarium_proto::Aquarium lAquaProto; 
-    lAquaProto.set_tour(mIdAlgue);
+    lAquaProto.set_tour(mPoch);
     for 
         (unsigned int lI = 0; lI < mPoissons.size(); ++lI)
     {
@@ -178,6 +181,21 @@ std::string Aquarium::aquariumTojson()
         lPoissonTemp->set_name(mPoissons[lI]->getName());
         lPoissonTemp->set_life(mPoissons[lI]->getLife()); 
         lPoissonTemp->set_islive(mPoissons[lI]->getLife() > 0);
+        switch 
+            (mPoissons[lI]->getType())
+        {
+            case TypePoisson::CARNIVORE :
+            lPoissonTemp->set_type(aquarium_proto::Poisson::CARNIVORE);
+            break;
+
+            case TypePoisson::HERBIVORE :
+            lPoissonTemp->set_type(aquarium_proto::Poisson::HERBIVORE);
+            break;
+
+            default:
+            lPoissonTemp->set_type(aquarium_proto::Poisson::NORMAL);
+            break;
+        } 
     }
     for 
         (unsigned int lI = 0; lI < mAlgues.size(); ++lI)
