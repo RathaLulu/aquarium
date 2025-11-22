@@ -40,6 +40,19 @@ struct Pos
     double vy;
 };
 
+enum class PosResult : uint8_t {
+    NOPOSSIBLE = 0,
+    COIN_BG = 5,
+    COIN_HG = 6,
+    TROP_GAUCHE = 7,
+    COIN_BD = 9,
+    COIN_HD = 10,
+    TROP_DROITE = 11,
+    TROP_BAS = 13,
+    TROP_HAUT = 14,
+    VALIDE = 15
+};
+
 class Poisson
 {
     public :
@@ -85,6 +98,10 @@ class Poisson
     Pos getPos() const; 
     /*
     */
+    PosResult posValid(const Pos pPos);
+    /*
+    */
+    void nextPos(); 
     protected : 
     /*
     */ 
@@ -103,10 +120,10 @@ class Poisson
     Pos mPos; 
     /*
     */
-    std::vector<double> mPosLim{0,0,0,0};
+    std::vector<double> mPosLim{0.0,0.0,0.0,0.0};
     /*
     */
-    double mSpeed = 10; //mSpeed**2= (mPos.vx)**2 + (mPos.vy)**2
+    double mSpeed = 1.0; //mSpeed**2= (mPos.vx)**2 + (mPos.vy)**2
 
 };
 

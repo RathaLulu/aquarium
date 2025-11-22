@@ -114,6 +114,7 @@ void Aquarium::endTour()
     }
     deleteDead(mPoissons, lDeadFish); 
     deleteDead(mAlgues, lDeadAlgues);
+    updatesPos();
 }
 
 //----------------------------------------------------------------//
@@ -165,7 +166,18 @@ void Aquarium::PassTour()
             }      
     }
     endTour();
+
     ++mPoch;
+}
+
+//----------------------------------------------------------------//
+
+void Aquarium::updatesPos()
+{
+    for (auto& p : mPoissons)
+    {
+        p->nextPos();
+    }
 }
 
 //----------------------------------------------------------------//

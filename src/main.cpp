@@ -18,7 +18,7 @@ int main()
  //   auto carn1 = std::make_shared<Carnivore>("Titou", Sexe::MALE, Race::POISSONCLOW);
   //  auto herb1 = std::make_shared<Herbivore>("Titou", Sexe::MALE, Race::CARPE);
 
-    std::vector<std::shared_ptr<Poisson>> poissons {fish1, fish2, fish3};
+    std::vector<std::shared_ptr<Poisson>> poissons {fish1};
     std::vector<int> sizes {};
   
     Aquarium Aqua(aqua_limit, poissons, sizes);
@@ -30,8 +30,8 @@ int main()
     int N = 40; 
     for (int i = 0; i<N; ++i)
     {
-       // Aqua.PassTour();
-        //Aqua.aquariumTojson();
+        Aqua.PassTour();
+        Aqua.aquariumTojson();
     }
         
     return 1; 

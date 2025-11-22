@@ -44,7 +44,9 @@ class Aquarium
     void deleteDead(std::vector<T>& pVector, std::vector<int> pDead);
     /*
     */
-
+    void updatesPos(); 
+    /*
+    */
     private :
     void endTour();
     /*
