@@ -182,7 +182,7 @@ void Aquarium::updatesPos()
 
 //----------------------------------------------------------------//
 
-std::string Aquarium::aquariumTojson()
+void Aquarium::aquariumTojson(const bool pDoPrint)
 {
     std::string lJson; 
     google::protobuf::util::JsonPrintOptions l0ptions;
@@ -227,6 +227,29 @@ std::string Aquarium::aquariumTojson()
         lAlgueTemp->set_size(mAlgues[lI]->getSize());
     }
     auto status = google::protobuf::util::MessageToJsonString(lAquaProto, &lJson); 
-    std::cout<<lJson<<std::endl;
-    return "";
+
+    if 
+        (mFile.is_open())
+    {
+        mFile<<lJson;
+    }
+    if 
+        (pDoPrint)
+    {
+        std::cout<<lJson<<std::endl;
+    }
+}
+
+//----------------------------------------------------------------//
+
+void Aquarium::setFile(std::string pFileName)
+{
+    if 
+        (mFile.is_open())
+    {
+        std::cout<<"Fermeture de l'ancien fichier" << std::endl; 
+        mFile.close();
+    }
+    mFile.open(pFileName);
+    std::cout<<"Le fichier " << pFileName <<" est ouvert"<<std::endl; 
 }

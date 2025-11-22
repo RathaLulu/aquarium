@@ -21,17 +21,19 @@ int main()
     std::vector<std::shared_ptr<Poisson>> poissons {fish1};
     std::vector<int> sizes {};
   
+
+    std::string file {"/home/lucas/code/aquarium/data/test.json"};
     Aquarium Aqua(aqua_limit, poissons, sizes);
 
+    Aqua.setFile(file);
 
 
-
-    Aqua.aquariumTojson();
+    Aqua.aquariumTojson(true);
     int N = 40; 
     for (int i = 0; i<N; ++i)
     {
         Aqua.PassTour();
-        Aqua.aquariumTojson();
+        Aqua.aquariumTojson(true);
     }
         
     return 1; 

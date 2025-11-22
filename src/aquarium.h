@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <fstream>
 
 #include "poisson.h"
 #include "algue.h"
@@ -37,7 +38,7 @@ class Aquarium
     void PassTour(); 
     /*
     */
-    std::string aquariumTojson();  
+    void aquariumTojson(const bool pDoPrint);  
     /*
     */
     template <typename T>
@@ -45,6 +46,9 @@ class Aquarium
     /*
     */
     void updatesPos(); 
+    /*
+    */
+    void setFile(std::string pFileName); 
     /*
     */
     private :
@@ -67,6 +71,9 @@ class Aquarium
     /*
     */
     std::vector<double> mDim={0,0,0,0};
+    /*
+    */
+    std::ofstream mFile;
 
 };
 
