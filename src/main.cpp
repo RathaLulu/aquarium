@@ -18,7 +18,7 @@ int main()
  //   auto carn1 = std::make_shared<Carnivore>("Titou", Sexe::MALE, Race::POISSONCLOW);
   //  auto herb1 = std::make_shared<Herbivore>("Titou", Sexe::MALE, Race::CARPE);
 
-    std::vector<std::shared_ptr<Poisson>> poissons {fish1};
+    std::vector<std::shared_ptr<Poisson>> poissons {fish1, fish2, fish3};
     std::vector<int> sizes {};
   
 
