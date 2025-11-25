@@ -1,4 +1,7 @@
 import json
+import time
+from queue import Queue
+
 
 class aqua_reader:
  
@@ -11,13 +14,31 @@ class aqua_reader:
             print("Fichier non trouvé !")
         except json.JSONDecodeError:
             print("Fichier JSON invalide !")
-    def getData(self): 
+
+    def getFullData(self): 
         return self.data
+
+    def getEpoch(self, Epoch) : 
+        if Epoch >= 1 : 
+            return self.data[Epoch - 1]
+        else : 
+            raise ValueError("Epoch < 1 ") 
+
+    def getDataFlux(self, queue) :
+        for Epoch in self.data : 
+            queue.put(Epoch)
+            time.sleep(0.01)
+
+
 
 if __name__ == "__main__":
     filename = f'/home/lucas/code/aquarium/data/test.json'
     reader = aqua_reader(filename)
-    data = reader.getData()
-    print(data)
+    q = Queue()
+    reader.getDataFlux(q)
+    for i in range(40) :
+        epoch = q.get()
+        print(epoch)
+
     
     
