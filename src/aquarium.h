@@ -20,6 +20,9 @@ class Aquarium
     Aquarium(const std::vector<double> pDim, std::vector<std::shared_ptr<Poisson>> pPoissons, std::vector<int> const pSizes);
     /*
     */
+    ~Aquarium();
+    /*
+    */
     void nextTour(); 
     /*
     */
@@ -51,11 +54,14 @@ class Aquarium
     void setFile(std::string pFileName); 
     /*
     */
+    void closeFile(); 
+    /*
+    */
     private :
     void endTour();
     /*
     */
-    int mPoch = 0; 
+    int mPoch = 1; 
     /*
     */
     int mAlgeN = 0; 
@@ -74,6 +80,12 @@ class Aquarium
     /*
     */
     std::ofstream mFile;
+    /*
+    */
+    std::string mFileName; 
+    /*
+    */
+    bool mFirstSave{true}; 
 
 };
 

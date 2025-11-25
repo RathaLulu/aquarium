@@ -22,6 +22,11 @@ Aquarium::Aquarium(const std::vector<double>  pDim, std::vector<std::shared_ptr<
     mDim[3] = pDim[3];
     addAlgues(pSizes);
 }
+//----------------------------------------------------------------//
+Aquarium::~Aquarium()
+{
+    
+}
 
 //----------------------------------------------------------------//
 
@@ -229,9 +234,20 @@ void Aquarium::aquariumTojson(const bool pDoPrint)
     auto status = google::protobuf::util::MessageToJsonString(lAquaProto, &lJson); 
 
     if 
-        (mFile.is_open())
+        (!mFileName.empty())
     {
+        mFile.open(mFileName, std::ios::out | std::ios::app);
+        if 
+            (!mFirstSave)
+        {
+            mFile<<",";
+        }
+        else
+        {
+            mFirstSave = false;
+        }
         mFile<<lJson;
+        mFile.close();
     }
     if 
         (pDoPrint)
@@ -244,12 +260,18 @@ void Aquarium::aquariumTojson(const bool pDoPrint)
 
 void Aquarium::setFile(std::string pFileName)
 {
-    if 
-        (mFile.is_open())
-    {
-        std::cout<<"Fermeture de l'ancien fichier" << std::endl; 
-        mFile.close();
-    }
-    mFile.open(pFileName);
-    std::cout<<"Le fichier " << pFileName <<" est ouvert"<<std::endl; 
+    mFileName = pFileName;
+    mFile.open(mFileName, std::ios::out); 
+    mFile<<"[";
+    mFile.close();
+}
+
+//----------------------------------------------------------------//
+
+void Aquarium::closeFile()
+{
+    mFile.open(mFileName, std::ios::out | std::ios::app);
+    mFile<<"]";
+    mFile.close();
+    mFirstSave = true;
 }

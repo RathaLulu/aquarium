@@ -35,6 +35,8 @@ int main()
         Aqua.PassTour();
         Aqua.aquariumTojson(true);
     }
+
+    Aqua.closeFile();
         
     return 1; 
 }
