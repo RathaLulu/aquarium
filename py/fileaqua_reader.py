@@ -6,26 +6,35 @@ from queue import Queue
 class aqua_reader:
  
     def __init__(self, filename): 
-        self.data = dict()
+        self.__data = dict()
         try:
             with open(filename, "r", encoding="utf-8") as f:
-                self.data = json.load(f)
+                self.__data = json.load(f)
+                self.size = len(self.__data)
         except FileNotFoundError:
             print("Fichier non trouvé !")
         except json.JSONDecodeError:
             print("Fichier JSON invalide !")
 
+
     def getFullData(self): 
-        return self.data
+        return self.__data
 
     def getEpoch(self, Epoch) : 
-        if Epoch >= 1 : 
-            return self.data[Epoch - 1]
+        if Epoch >= 1 and Epoch <= self.size: 
+            return self.__data[Epoch - 1]  #Epoch - 1 car Epoch (tour) commence par 1 dans les fichiers json 
         else : 
-            raise ValueError("Epoch < 1 ") 
+            raise ValueError("Epoch non valide") 
+    
+    def getEpochFlux(self, queue, Epoch): 
+        if Epoch >= 1 and Epoch <= self.size: 
+            queue.put(self.__data[Epoch - 1])
+        else : 
+            raise ValueError("Epoch non valide") 
+        
 
-    def getDataFlux(self, queue) :
-        for Epoch in self.data : 
+    def getFullDataFlux(self, queue) :
+        for Epoch in self.__data : 
             queue.put(Epoch)
             time.sleep(0.01)
 
@@ -34,11 +43,11 @@ class aqua_reader:
 if __name__ == "__main__":
     filename = f'/home/lucas/code/aquarium/data/test.json'
     reader = aqua_reader(filename)
-    q = Queue()
-    reader.getDataFlux(q)
-    for i in range(40) :
+    q = Queue() 
+    for i in range(1,43) :
+        reader.getEpochFlux(q,i)
         epoch = q.get()
-        print(epoch)
+        print(f'{epoch}\n')
 
     
     
