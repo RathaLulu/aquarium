@@ -11,7 +11,7 @@ ORANGE = (255, 150, 0)
 RED = (255, 50, 50)
 GREEN = (50, 255, 50)
 
-def plot(queue, delta) :
+def plot(queue, delta = None):
     pygame.init()
     screen = pygame.display.set_mode((800, 600))
     pygame.display.set_caption("Aquarium Animé")
