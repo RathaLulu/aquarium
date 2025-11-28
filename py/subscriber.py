@@ -3,7 +3,7 @@ import json
 
 from queue import Queue
 
-def serverZMQ(prot ,queue): 
+def subZMQ(prot ,queue): 
     ctx = zmq.Context()
     sock = ctx.socket(zmq.SUB)
     sock.connect(prot)

@@ -1,13 +1,13 @@
 import threading
 
 from queue import Queue
-from server import serverZMQ
+from surscriber import subZMQ
 from aqua_visu import plot
 
 def main(prot):
     q = Queue()
 
-    t1 = threading.Thread(target=serverZMQ, args=(prot, q))
+    t1 = threading.Thread(target=subZMQ, args=(prot, q))
     t2 = threading.Thread(target=plot, args=(q,))
 
     t1.start()
